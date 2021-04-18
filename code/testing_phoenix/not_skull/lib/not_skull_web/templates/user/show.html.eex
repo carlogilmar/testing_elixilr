@@ -1,0 +1,15 @@
+<h1>Profile for: <%= @user.email %></h1>
+
+<h2>Active games</h2>
+
+<ul id="active-games">
+  <%= for game_id <- NotSkull.ActiveGames.all() do %>
+    <li><a href="<%= "/game?game_id=#{game_id}" %>"><%= game_id %></a></li>
+  <% end %>
+</ul>
+
+<%= form_for @conn, Routes.lobby_path(@conn, :new), fn _f -> %>
+  <div class="submit">
+    <%= submit "New Game" %>
+  </div>
+<% end %>
